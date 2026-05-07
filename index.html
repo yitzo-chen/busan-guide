@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 釜山旅遊手帳</title>
+<style>
+  :root {
+    --disney-blue: #1a237e;
+    --disney-blue-light: #3949ab;
+    --disney-gold: #ffc107;
+    --disney-pink: #f06292;
+    --snoopy-red: #c62828;
+    --snoopy-yellow: #fff9c4;
+    --bg: #f5f5f5;
+    --card-bg: #ffffff;
+    --text: #212121;
+    --text-light: #757575;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #1a237e 0%, #4a148c 55%, #880e4f 100%);
+    padding: 36px 20px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '✨';
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.08;
+    top: -15px;
+    left: -10px;
+    transform: rotate(-20deg);
+  }
+  .header::after {
+    content: '🌟';
+    position: absolute;
+    font-size: 80px;
+    opacity: 0.08;
+    bottom: -15px;
+    right: -5px;
+    transform: rotate(15deg);
+  }
+  .header-emoji { font-size: 52px; margin-bottom: 10px; }
+  .header h1 {
+    color: var(--disney-gold);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .header p {
+    color: rgba(255,255,255,0.8);
+    font-size: 13px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+  .header-stars {
+    color: var(--disney-gold);
+    font-size: 16px;
+    margin-top: 6px;
+    letter-spacing: 3px;
+  }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid #e8e8e8;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  }
+  .tab {
+    flex: 1;
+    padding: 13px 4px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #9e9e9e;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: block;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab.active { color: var(--disney-blue-light); border-bottom-color: var(--disney-blue-light); }
+  .tab-snoopy.active { color: var(--snoopy-red); border-bottom-color: var(--snoopy-red); }
+  .tab-emoji { font-size: 16px; display: block; margin-bottom: 2px; }
+
+  /* ── Section ── */
+  .section { padding: 16px; display: none; }
+  .section.active { display: block; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--disney-blue);
+  }
+  .section-snoopy .section-title { color: var(--snoopy-red); }
+
+  /* ── Card ── */
+  .card {
+    background: var(--card-bg);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+    border: 1px solid #ebebeb;
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 9px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .card-kr {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 3px;
+    font-weight: 400;
+  }
+  .card-badge {
+    background: var(--disney-blue-light);
+    color: white;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 8px;
+    margin-top: 2px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 11px;
+  }
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .meta-tag {
+    font-size: 11px;
+    padding: 4px 9px;
+    border-radius: 20px;
+    background: #f0f0f0;
+    color: #555;
+    font-weight: 500;
+  }
+  .meta-tag.station { background: #e3f2fd; color: #1565c0; }
+  .meta-tag.budget  { background: #fff8e1; color: #e65100; }
+  .meta-tag.tip     { background: #fce4ec; color: #b71c1c; }
+  .meta-tag.star    { background: #f3e5f5; color: #6a1b9a; }
+
+  .maps-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--disney-blue-light), var(--disney-blue));
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 9px 18px;
+    border-radius: 22px;
+    box-shadow: 0 2px 8px rgba(57,73,171,0.3);
+    transition: opacity 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .maps-btn:active { opacity: 0.75; }
+
+  /* ── Snoopy Section ── */
+  .snoopy-card {
+    background: linear-gradient(135deg, #fff9c4 0%, #fff3e0 100%);
+    border: 2px solid #ffc107;
+  }
+  .snoopy-card .card-badge   { background: var(--snoopy-red); }
+  .snoopy-card .maps-btn     { background: linear-gradient(135deg, #e53935, #b71c1c); box-shadow: 0 2px 8px rgba(198,40,40,0.3); }
+
+  .snoopy-banner {
+    background: linear-gradient(135deg, #fff9c4, #ffeeba);
+    border-radius: 14px;
+    padding: 13px 15px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #5d4037;
+    border-left: 4px solid var(--disney-gold);
+    line-height: 1.6;
+  }
+
+  .card-dimmed {
+    border: 1.5px dashed #ccc;
+    background: #fafafa;
+  }
+  .card-dimmed .maps-btn { background: #9e9e9e; box-shadow: none; }
+  .card-dimmed .card-badge { background: #9e9e9e; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 28px 16px 36px;
+    font-size: 11.5px;
+    color: #aaa;
+    line-height: 1.8;
+  }
+  .footer-heart { color: var(--disney-pink); font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-emoji">🐾✈️</div>
+  <h1>釜山旅遊手帳</h1>
+  <p>韓國釜山 · 2天精選推薦 · 2024–2025</p>
+  <div class="header-stars">★ ★ ★</div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <a class="tab active" onclick="showSection('attractions',this)">
+    <span class="tab-emoji">🏖️</span>景點
+  </a>
+  <a class="tab" onclick="showSection('food',this)">
+    <span class="tab-emoji">🍜</span>美食
+  </a>
+  <a class="tab" onclick="showSection('cafe',this)">
+    <span class="tab-emoji">☕</span>咖啡廳
+  </a>
+  <a class="tab tab-snoopy" onclick="showSection('snoopy',this)">
+    <span class="tab-emoji">🐶</span>史努比
+  </a>
+</div>
+
+<!-- ═══ 景點 ═══ -->
+<div id="attractions" class="section active">
+  <div class="section-title">🏖️ 必去景點</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">海東龍宮寺</div>
+        <div class="card-kr">해동 용궁사</div>
+      </div>
+      <span class="card-badge">打卡聖地</span>
+    </div>
+    <div class="card-desc">建在海邊懸崖上的千年佛寺，是韓國少數面向大海的寺廟。波浪拍打岩石的聲音加上莊嚴殿堂，氛圍療癒又震撼，清晨人少最適合拍照。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 搭 181 號公車直達</span>
+      <span class="meta-tag budget">💰 免費入場</span>
+      <span class="meta-tag tip">⏰ 建議早上 9 點前</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/해동+용궁사" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">甘川洞文化村</div>
+        <div class="card-kr">감천문화마을</div>
+      </div>
+      <span class="card-badge">韓國馬丘比丘</span>
+    </div>
+    <div class="card-desc">彩色小屋層層疊疊蓋在山坡上，被譽為「釜山的馬丘比丘」。村內有許多藝術裝置和特色小店，對照地圖找隱藏版公仔是熱門玩法，非常適合拍照。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 2 號或 2-2 號公車</span>
+      <span class="meta-tag budget">💰 地圖費 2,000 ₩</span>
+      <span class="meta-tag tip">🕙 建議平日前往</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/감천문화마을" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">廣安里海水浴場</div>
+        <div class="card-kr">광안리해수욕장</div>
+      </div>
+      <span class="card-badge">夜景必去</span>
+    </div>
+    <div class="card-desc">釜山最美夜景地點，入夜後廣安大橋燈光璀璨倒映海面，沿岸咖啡廳林立。適合傍晚先喝咖啡，等天黑後拍夜景，是情侶和網美的熱門約會地。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 2 號線 廣安站</span>
+      <span class="meta-tag budget">💰 海灘免費</span>
+      <span class="meta-tag tip">🌙 晚上 7 點後最美</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/광안리해수욕장" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">海雲台海水浴場</div>
+        <div class="card-kr">해운대해수욕장</div>
+      </div>
+      <span class="card-badge">釜山代表</span>
+    </div>
+    <div class="card-desc">釜山最具代表性的海灘，白沙細浪、高樓夾岸形成獨特天際線。周邊餐廳、咖啡廳和購物街密集，交通方便，是旅遊的最佳大本營。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 2 號線 海雲台站</span>
+      <span class="meta-tag budget">💰 免費</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/해운대해수욕장" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">釜山塔 / 龍頭山公園</div>
+        <div class="card-kr">부산타워 / 용두산공원</div>
+      </div>
+      <span class="card-badge">俯瞰全城</span>
+    </div>
+    <div class="card-desc">高 120 公尺的觀景塔，可俯瞰釜山港全景和島嶼輪廓。公園入口在南浦洞購物街旁，逛完街後順道上來看夜景非常順路，晚上有光影秀加持。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 1 號線 南浦站</span>
+      <span class="meta-tag budget">💰 成人 12,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/부산타워" target="_blank">📍 Google Maps</a>
+  </div>
+
+</div>
+
+<!-- ═══ 美食 ═══ -->
+<div id="food" class="section">
+  <div class="section-title">🍜 必吃美食</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">雙胞胎豬肉湯飯</div>
+        <div class="card-kr">쌍둥이돼지국밥</div>
+      </div>
+      <span class="card-badge">釜山名物</span>
+    </div>
+    <div class="card-desc">釜山最具代表性的早餐，白色豬骨湯底搭配軟嫩豬肉，熱騰騰端上桌。加入蔥花和蝦醬調味是道地吃法，吃完暖胃飽足，在地人從小吃到大的家鄉味。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 1 號線 西面站</span>
+      <span class="meta-tag budget">💰 約 10,000–12,000 ₩</span>
+      <span class="meta-tag tip">⏰ 早上 7 點起開賣</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/쌍둥이돼지국밥" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">錦繡河豚湯</div>
+        <div class="card-kr">금수복국</div>
+      </div>
+      <span class="card-badge">米其林必比登</span>
+    </div>
+    <div class="card-desc">連續多年獲得米其林必比登認證，24 小時全天候營業！清爽的河豚高湯喝完完全不膩，是釜山在地人的口袋名單，深夜宵夜也開，評分極高。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 2 號線 海雲台附近</span>
+      <span class="meta-tag budget">💰 約 20,000–25,000 ₩</span>
+      <span class="meta-tag star">⭐ 米其林認證</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/금수복국+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">機張市場海鮮</div>
+        <div class="card-kr">기장시장 해산물</div>
+      </div>
+      <span class="card-badge">現撈新鮮</span>
+    </div>
+    <div class="card-desc">松葉蟹、活蝦、蟹膏拌飯是必點。可在市場選好食材，請附近餐廳代煮，是道地在地玩法。份量超大、新鮮度完勝觀光區，CP 值極高。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 從海雲台約 30 分鐘</span>
+      <span class="meta-tag budget">💰 依時價，約 30,000–60,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/기장시장" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">百年鐵鍋炸雞</div>
+        <div class="card-kr">백년통닭</div>
+      </div>
+      <span class="card-badge">老字號</span>
+    </div>
+    <div class="card-desc">釜山在地老字號炸雞，以鐵鍋油炸讓外皮超酥脆、肉質鮮嫩多汁。配啤酒是韓國人的標配吃法，西面站附近逛街後人氣排隊首選。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 1 號線 西面站</span>
+      <span class="meta-tag budget">💰 約 18,000–22,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/백년통닭+서면" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">螞蟻家辣炒章魚</div>
+        <div class="card-kr">개미집</div>
+      </div>
+      <span class="card-badge">觀光必訪</span>
+    </div>
+    <div class="card-desc">釜山超人氣辣炒章魚，Q 彈章魚裹上香辣醬汁，配白飯超下飯。各大景點附近皆有分店，逛完景點順路填肚子，多數分店接受獨自用餐。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🏬 多區均有分店</span>
+      <span class="meta-tag budget">💰 約 12,000–15,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/개미집+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+</div>
+
+<!-- ═══ 咖啡廳 ═══ -->
+<div id="cafe" class="section">
+  <div class="section-title">☕ 人氣咖啡廳</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Coralani</div>
+        <div class="card-kr">코랄라니</div>
+      </div>
+      <span class="card-badge">小紅書爆紅</span>
+    </div>
+    <div class="card-desc">近年最火爆的釜山網美咖啡廳！獨棟清水模建築坐落山坡，戶外擺有懶人椅可直接眺望廣安大橋和海岸線，是攝影控和打卡族的指定朝聖地。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 廣安里附近</span>
+      <span class="meta-tag budget">💰 飲料約 7,000–9,000 ₩</span>
+      <span class="meta-tag tip">📸 黃昏時光最美</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/코랄라니+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">VIEW COFFEE</div>
+        <div class="card-kr">뷰 커피</div>
+      </div>
+      <span class="card-badge">2024 新開幕</span>
+    </div>
+    <div class="card-desc">2024 年開幕的純白玻璃屋咖啡廳，整面落地窗框住釜山港大橋和無盡海景，老宅翻新設計感十足。適合午後悠閒坐著看海、拍照。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 影島 青鶴洞</span>
+      <span class="meta-tag budget">💰 飲料約 6,500–8,500 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/뷰커피+영도" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">EL16.52 海景咖啡廳</div>
+        <div class="card-kr">EL16.52</div>
+      </div>
+      <span class="card-badge">松島絕景</span>
+    </div>
+    <div class="card-desc">坐擁松島海岸最佳視野，階梯式座位設計讓每個位置都零死角。坐在窗邊感覺被藍海包圍，天氣晴朗時視野開闊，是釜山必打卡的代表性海景咖啡廳。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 松島附近</span>
+      <span class="meta-tag budget">💰 飲料約 7,000–10,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/EL16.52+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Strut Coffee</div>
+        <div class="card-kr">스트럿 커피</div>
+      </div>
+      <span class="card-badge">世界百大 2025</span>
+    </div>
+    <div class="card-desc">2025 年入選世界百大咖啡廳！老宅改建的文青空間，外觀簡約乾淨，傳統古宅的復古氛圍讓人靜下心細品精品咖啡，是咖啡控來釜山的必訪地。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 釜山市區</span>
+      <span class="meta-tag budget">💰 精品咖啡約 8,000–12,000 ₩</span>
+      <span class="meta-tag star">⭐ 世界百大認證</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/스트럿+커피+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Seven Island Coffee</div>
+        <div class="card-kr">세븐 아일랜드 커피</div>
+      </div>
+      <span class="card-badge">2024 新開幕</span>
+    </div>
+    <div class="card-desc">2024 年 8 月全新開幕，位於加德島，由首爾知名建築事務所設計，三層樓空間可 360 度欣賞壯麗海景。適合規劃半日遊小旅行，氛圍極佳。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚌 加德島（需搭渡輪）</span>
+      <span class="meta-tag budget">💰 飲料約 8,000–12,000 ₩</span>
+      <span class="meta-tag tip">🛥️ 建議規劃半天行程</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/세븐아일랜드커피+가덕도" target="_blank">📍 Google Maps</a>
+  </div>
+
+</div>
+
+<!-- ═══ 史努比專區 ═══ -->
+<div id="snoopy" class="section section-snoopy">
+  <div class="section-title">🐶 史努比專區</div>
+
+  <div class="snoopy-banner">
+    🐾 史努比迷必看！釜山有專屬的 Snoopy 主題咖啡廳，帶你走進查理布朗的世界 ✨<br>
+    每一處都值得拍照打卡，好好享受這趟花生漫畫之旅！
+  </div>
+
+  <div class="card snoopy-card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Snoopy Place 釜山店</div>
+        <div class="card-kr">스누피 플레이스 부산</div>
+      </div>
+      <span class="card-badge">絕對必去</span>
+    </div>
+    <div class="card-desc">釜山史努比主題咖啡廳，共 3 層樓！大門口有超巨大衝浪 Snoopy 公仔迎接，整棟以「海洋度假村 × 史努比家族」為主題設計。Snoopy、查理布朗、糊塗塌客隨處可見，飲料和甜點造型全都超可愛，是史努比迷的朝聖地。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🚇 地鐵 2 號線 東白站 4 號出口步行 10 分鐘</span>
+      <span class="meta-tag budget">💰 飲料約 5,500–8,000 ₩</span>
+      <span class="meta-tag tip">🕙 每日 10:00–21:00</span>
+      <span class="meta-tag tip">📸 門口巨型 Snoopy 必拍</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/스누피+플레이스+해운대+부산" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card snoopy-card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Snoopy Place 釜山店地址</div>
+        <div class="card-kr">부산광역시 해운대구 해운대해변로 197</div>
+      </div>
+      <span class="card-badge">店址資訊</span>
+    </div>
+    <div class="card-desc">📍 부산광역시 해운대구 해운대해변로 197 경동제이드 1동 102호<br><br>就在海雲台海灘旁的景東 Jade 大樓 1 棟 102 號，海邊散步後直接走過去非常方便。停車場在地下室，店內消費可申請 1 小時免費停車。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🏖️ 海雲台海灘旁</span>
+      <span class="meta-tag tip">🚗 地下停車場（消費 1 小時免費）</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/place/해운대해변로+197" target="_blank">📍 Google Maps</a>
+  </div>
+
+  <div class="card snoopy-card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">史努比周邊購物推薦</div>
+        <div class="card-kr">스누피 굿즈 쇼핑</div>
+      </div>
+      <span class="card-badge">帶回家</span>
+    </div>
+    <div class="card-desc">除了 Snoopy Place 店內有官方周邊商品，西面和南浦洞的購物街也有 PEANUTS 授權商品可挖寶。韓國版設計有時會有限定款，價格也比台灣便宜。</div>
+    <div class="card-meta">
+      <span class="meta-tag station">🏬 西面站 / 南浦洞商圈</span>
+      <span class="meta-tag budget">💰 依商品而異</span>
+      <span class="meta-tag tip">🛍️ 注意韓國限定款</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/서면+쇼핑+부산" target="_blank">📍 Google Maps 西面購物</a>
+  </div>
+
+  <div class="card card-dimmed">
+    <div class="card-header">
+      <div>
+        <div class="card-title">Snoopy Garden（僅供參考）</div>
+        <div class="card-kr">스누피가든 · 濟州島</div>
+      </div>
+      <span class="card-badge">非釜山</span>
+    </div>
+    <div class="card-desc">⚠️ 此景點位於濟州島，非釜山行程。若之後有機會去濟州島，這座佔地兩萬坪的史努比主題花園絕對是史努比迷的終極朝聖地，戶外花園超療癒！</div>
+    <div class="card-meta">
+      <span class="meta-tag station">✈️ 濟州島景點（非此行）</span>
+      <span class="meta-tag budget">💰 門票約 15,000 ₩</span>
+    </div>
+    <a class="maps-btn" href="https://www.google.com/maps/search/스누피가든+제주" target="_blank">📍 Google Maps（濟州）</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <span class="footer-heart">♥</span> 資料整理自 2024–2025 年網路評論 <span class="footer-heart">♥</span><br>
+  價格為參考區間，實際以現場公告為準<br>
+  匯率參考：1 TWD ≈ 40–42 ₩<br><br>
+  🐾 玩得開心，安全回家！
+</div>
+
+<script>
+function showSection(id, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+
+</body>
+</html>
