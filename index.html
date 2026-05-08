@@ -34,6 +34,7 @@
   .tab-sauna.active{color:var(--sauna-orange);border-bottom-color:var(--sauna-orange);}
   .tab-rank.active{color:var(--rank-gold);border-bottom-color:var(--rank-gold);}
   .tab-map.active{color:#00695c;border-bottom-color:#00695c;}
+  .tab-shop.active{color:#00897b;border-bottom-color:#00897b;}
   .tab-emoji{font-size:15px;display:block;margin-bottom:2px;}
 
   /* Sections */
@@ -44,6 +45,18 @@
   .section-snoopy .section-title{color:var(--snoopy-red);}
   .section-sauna  .section-title{color:var(--sauna-orange);}
   .section-rank   .section-title{color:var(--rank-gold);}
+  .section-shop   .section-title{color:#00695c;}
+
+  /* Shop */
+  .shop-card{background:linear-gradient(135deg,#e0f2f1 0%,#e8f5e9 100%);border:2px solid #b2dfdb;}
+  .shop-card .card-badge{background:#00695c;}
+  .shop-card .maps-btn,.shop-card .intro-btn{background:linear-gradient(135deg,#00796b,#00695c);box-shadow:0 2px 8px rgba(0,105,92,.3);}
+  .shop-banner{background:linear-gradient(135deg,#e0f2f1,#e8f5e9);border-radius:14px;padding:13px 15px;margin-bottom:16px;font-size:13px;color:#00352c;border-left:4px solid #00897b;line-height:1.6;}
+  .shop-items{list-style:none;margin:0 0 12px;padding:0;}
+  .shop-item{padding:5px 0;font-size:13px;color:#333;border-bottom:1px solid rgba(0,0,0,.06);display:flex;align-items:flex-start;gap:7px;line-height:1.5;}
+  .shop-item:last-child{border-bottom:none;}
+  .shop-item-e{flex-shrink:0;font-size:15px;}
+  .shop-item-note{font-size:11px;color:#777;margin-top:1px;}
 
   /* Cards */
   .card{background:var(--card-bg);border-radius:18px;margin-bottom:14px;box-shadow:var(--shadow);border:1px solid #ebebeb;padding:0;overflow:hidden;}
@@ -131,6 +144,7 @@
   <a class="tab tab-sauna" onclick="showSection('sauna',this)"><span class="tab-emoji">♨️</span>汗蒸幕</a>
   <a class="tab tab-rank" onclick="showSection('rank',this)"><span class="tab-emoji">🏆</span>10大排名</a>
   <a class="tab tab-map" onclick="showSection('map',this)"><span class="tab-emoji">🗺️</span>地圖</a>
+  <a class="tab tab-shop" onclick="showSection('shop',this)"><span class="tab-emoji">🛍️</span>購物</a>
 </div>
 
 <!-- ═══ 景點 ═══ -->
@@ -418,6 +432,122 @@
   <div class="card rank-card rank-10"><div class="rank-num">10</div><div class="rank-body"><div class="rank-tag">☕ 咖啡廳</div><div class="card-header"><div><div class="card-title">Strut Coffee</div><div class="card-kr">스트럿 커피</div></div><span class="card-badge">世界百大</span></div><div class="card-desc">2025 年入選世界百大咖啡廳，老宅改建的靜謐空間，釜山精品咖啡代表。</div><div class="card-meta"><span class="meta-tag star">⭐ 2025 世界百大</span></div><div class="btn-row"><a class="maps-btn" href="https://www.google.com/maps/search/스트럿+커피+부산" target="_blank">📍 Maps</a><a class="intro-btn" href="https://www.google.com/search?q=釜山+Strut+Coffee+世界百大咖啡廳+旅遊&hl=zh-TW" target="_blank">📖 中文介紹</a></div></div></div>
 </div>
 
+<!-- ═══ 購物 ═══ -->
+<div id="shop" class="section section-shop">
+  <div class="section-title">🛍️ 釜山購物指南</div>
+  <div class="shop-banner">💡 阿珠媽背心在國際市場最正宗 · 美妝去 Olive Young · 伴手禮到超市最划算！<br>匯率參考：1 TWD ≈ 40–42 ₩</div>
+
+  <!-- 阿珠媽背心 -->
+  <div class="card shop-card">
+    <a class="card-img" href="https://www.google.com/search?q=釜山+阿珠媽背心+아줌마조끼+哪裡買&hl=zh-TW" target="_blank" style="background:linear-gradient(135deg,#00695c,#00897b)">
+      <span class="card-img-emoji">🦺</span><span class="card-img-sub">부산 · 국제시장</span><span class="card-img-label">📖 點擊看中文介紹</span>
+    </a>
+    <div class="card-content">
+      <div class="card-header"><div><div class="card-title">阿珠媽背心</div><div class="card-kr">아줌마 조끼</div></div><span class="card-badge">超夯潮物</span></div>
+      <div class="card-desc">原本是市場媽媽（阿珠媽）穿的多口袋工作背心，現在變成年輕人搶手潮流單品！顏色鮮豔、口袋超多又實用，是釜山旅遊必帶伴手禮。</div>
+      <div class="card-meta">
+        <span class="meta-tag station">📍 國際市場最正宗</span>
+        <span class="meta-tag budget">💰 5,000–15,000 ₩</span>
+        <span class="meta-tag tip">👗 尺寸偏大，可直接試穿</span>
+      </div>
+      <ul class="shop-items">
+        <li class="shop-item"><span class="shop-item-e">🏪</span><div><strong>國際市場</strong>（국제시장）<div class="shop-item-note">最正宗來源，阿珠媽本人在穿的款式都在這</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🛒</span><div><strong>光復路商圈</strong>（광복로）<div class="shop-item-note">周邊雜貨店也有，款式偏潮流版</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🐟</span><div><strong>扎嘎其市場</strong>周邊<div class="shop-item-note">漁市場旁的雜貨區可找到</div></div></li>
+      </ul>
+      <div class="btn-row">
+        <a class="maps-btn" href="https://www.google.com/maps/search/국제시장+부산" target="_blank">📍 國際市場地圖</a>
+        <a class="intro-btn" href="https://www.google.com/search?q=釜山+阿珠媽背心+아줌마조끼+哪裡買&hl=zh-TW" target="_blank">📖 中文介紹</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 伴手禮/零食 -->
+  <div class="card shop-card">
+    <a class="card-img" href="https://www.google.com/search?q=釜山+伴手禮+必買+零食+推薦&hl=zh-TW" target="_blank" style="background:linear-gradient(135deg,#e65100,#f57c00)">
+      <span class="card-img-emoji">🎁</span><span class="card-img-sub">부산 · E-Mart / 슈퍼마켓</span><span class="card-img-label">📖 點擊看中文介紹</span>
+    </a>
+    <div class="card-content">
+      <div class="card-header"><div><div class="card-title">伴手禮 / 零食</div><div class="card-kr">선물 / 간식</div></div><span class="card-badge">超市最划算</span></div>
+      <div class="card-desc">到 E-Mart、Homeplus 或 CU 超市採購最划算！以下是最推薦必買清單：</div>
+      <ul class="shop-items">
+        <li class="shop-item"><span class="shop-item-e">🌿</span><div><strong>海苔禮盒</strong>（김）<div class="shop-item-note">光川市場批發價最便宜，超市也有精裝版送禮用</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🐟</span><div><strong>魚板禮盒</strong>（부산어묵）<div class="shop-item-note">釜山名產，真空包裝可帶回台灣，機場也有賣</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🌶️</span><div><strong>辣炒年糕醬包</strong>（떡볶이 소스）<div class="shop-item-note">청정원品牌最好找，一包約 3,000 ₩</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🍋</span><div><strong>柚子茶 / 蜂蜜柚子醬</strong><div class="shop-item-note">農協或청정원牌，沖熱水就能喝，送禮超實用</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🍫</span><div><strong>韓國零食組合</strong><div class="shop-item-note">꼬북칩（四層脆片）、허니버터칩（蜂蜜奶油薯片）必買</div></div></li>
+      </ul>
+      <div class="btn-row">
+        <a class="maps-btn" href="https://www.google.com/maps/search/이마트+부산" target="_blank">📍 E-Mart 地圖</a>
+        <a class="intro-btn" href="https://www.google.com/search?q=釜山+伴手禮+必買+零食+推薦&hl=zh-TW" target="_blank">📖 中文介紹</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 美妝 -->
+  <div class="card shop-card">
+    <a class="card-img" href="https://www.google.com/search?q=釜山+Olive+Young+必買+韓妝+推薦&hl=zh-TW" target="_blank" style="background:linear-gradient(135deg,#ad1457,#d81b60)">
+      <span class="card-img-emoji">💄</span><span class="card-img-sub">부산 · 서면 / 남포동</span><span class="card-img-label">📖 點擊看中文介紹</span>
+    </a>
+    <div class="card-content">
+      <div class="card-header"><div><div class="card-title">美妝 / 保養</div><div class="card-kr">화장품 / 올리브영</div></div><span class="card-badge">Olive Young</span></div>
+      <div class="card-desc">南浦洞、西面一帶 Olive Young 密集，面膜買 10 片裝最划算。以下是最推薦韓妝品牌：</div>
+      <ul class="shop-items">
+        <li class="shop-item"><span class="shop-item-e">🧴</span><div><strong>COSRX</strong><div class="shop-item-note">蝸牛精華、痘痘貼，藥妝界超人氣，CP值高</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🌿</span><div><strong>Some By Mi</strong><div class="shop-item-note">AHA/BHA/PHA 三酸煥膚系列，敏感肌也適用</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">💧</span><div><strong>Dr.Jart+</strong><div class="shop-item-note">Cicapair 虎皮草修護系列，護膚控必買</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🎭</span><div><strong>面膜</strong><div class="shop-item-note">Mediheal、SNP、Papa Recipe 蜂蜜面膜，10片裝最划算</div></div></li>
+      </ul>
+      <div class="btn-row">
+        <a class="maps-btn" href="https://www.google.com/maps/search/올리브영+서면+부산" target="_blank">📍 Olive Young 地圖</a>
+        <a class="intro-btn" href="https://www.google.com/search?q=釜山+Olive+Young+必買+韓妝+推薦&hl=zh-TW" target="_blank">📖 中文介紹</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服飾雜貨 -->
+  <div class="card shop-card">
+    <a class="card-img" href="https://www.google.com/search?q=釜山+西面地下街+光復路+購物+推薦&hl=zh-TW" target="_blank" style="background:linear-gradient(135deg,#1a237e,#3949ab)">
+      <span class="card-img-emoji">👕</span><span class="card-img-sub">부산 · 서면 / 광복로</span><span class="card-img-label">📖 點擊看中文介紹</span>
+    </a>
+    <div class="card-content">
+      <div class="card-header"><div><div class="card-title">服飾 / 雜貨</div><div class="card-kr">의류 / 잡화</div></div><span class="card-badge">平價掃貨</span></div>
+      <div class="card-desc">釜山兩大購物街，西面地下街平價流行、光復路小物雜貨多，是掃貨的好地方！</div>
+      <ul class="shop-items">
+        <li class="shop-item"><span class="shop-item-e">🚇</span><div><strong>西面地下街</strong>（서면 지하상가）<div class="shop-item-note">流行服飾、飾品、平價鞋子，適合年輕人逛</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🎪</span><div><strong>光復路商圈</strong>（광복로 쇼핑타운）<div class="shop-item-note">復古小物、手作飾品、釜山限定周邊雜貨</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🐶</span><div><strong>史努比專門店</strong>（해운대 스누피 플레이스）<div class="shop-item-note">釜山限定公仔、馬克杯、文具，只有這裡有</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🌉</span><div><strong>廣安里周邊</strong>設計選物店<div class="shop-item-note">月亮水滴系列、在地設計師品牌小物</div></div></li>
+      </ul>
+      <div class="btn-row">
+        <a class="maps-btn" href="https://www.google.com/maps/search/서면+지하상가+부산" target="_blank">📍 西面地下街</a>
+        <a class="intro-btn" href="https://www.google.com/search?q=釜山+西面地下街+光復路+購物+推薦&hl=zh-TW" target="_blank">📖 中文介紹</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 釜山限定 -->
+  <div class="card shop-card">
+    <a class="card-img" href="https://www.google.com/search?q=釜山限定+紀念品+推薦+購買&hl=zh-TW" target="_blank" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">
+      <span class="card-img-emoji">📮</span><span class="card-img-sub">부산 한정판</span><span class="card-img-label">📖 點擊看中文介紹</span>
+    </a>
+    <div class="card-content">
+      <div class="card-header"><div><div class="card-title">釜山限定紀念品</div><div class="card-kr">부산 한정 기념품</div></div><span class="card-badge">這裡才有</span></div>
+      <div class="card-desc">這些只有在釜山才買得到，帶回去保證讓朋友羨慕！</div>
+      <ul class="shop-items">
+        <li class="shop-item"><span class="shop-item-e">🐶</span><div><strong>Snoopy 釜山限定商品</strong><div class="shop-item-note">衝浪造型公仔、海雲台版馬克杯，只在海雲台門市</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">📬</span><div><strong>釜山港限定明信片</strong><div class="shop-item-note">各大景點、超市、紀念品店皆有，1 張約 1,000–2,000 ₩</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🌊</span><div><strong>廣安里×海雲台設計品</strong><div class="shop-item-note">水滴系列貼紙、帆布袋，各景點周邊設計小店</div></div></li>
+        <li class="shop-item"><span class="shop-item-e">🐡</span><div><strong>魚板造型周邊</strong>（어묵 굿즈）<div class="shop-item-note">釜山魚板是名產，有文具/磁鐵等趣味周邊</div></div></li>
+      </ul>
+      <div class="btn-row">
+        <a class="maps-btn" href="https://www.google.com/maps/search/부산+기념품+가게" target="_blank">📍 紀念品店</a>
+        <a class="intro-btn" href="https://www.google.com/search?q=釜山限定+紀念品+推薦+購買&hl=zh-TW" target="_blank">📖 中文介紹</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ 地圖 ═══ -->
 <div id="map" class="section section-map">
   <div class="map-wrap">
@@ -429,6 +559,7 @@
       <div class="legend-item"><span class="legend-dot" style="background:#7b1fa2"></span>咖啡廳</div>
       <div class="legend-item"><span class="legend-dot" style="background:#c62828"></span>史努比</div>
       <div class="legend-item"><span class="legend-dot" style="background:#bf360c"></span>汗蒸幕</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#00897b"></span>購物</div>
     </div>
   </div>
 </div>
@@ -482,7 +613,12 @@ var LOCS = [
   { lat:35.1152, lng:129.0418, e:'🌙', cat:'汗蒸幕', cc:'#fbe9e7', ct:'#bf360c', mc:'#bf360c', t:'汗蒸幕 585 (Siloam)', k:'실로암사우나', d:'釜山站附近平價 24 小時汗蒸幕，可在館內過夜休息，背包客最愛。', gm:'https://www.google.com/maps/search/실로암사우나+부산역', gi:'https://www.google.com/search?q=釜山+Siloam+汗蒸幕+釜山站+旅遊心得&hl=zh-TW' },
   { lat:35.1572, lng:129.1588, e:'🌊', cat:'汗蒸幕', cc:'#fbe9e7', ct:'#bf360c', mc:'#bf360c', t:'海雲台 Grand 汗蒸幕', k:'해운대 그랜드 스파', d:'緊鄰海雲台海灘，可邊泡湯邊欣賞海景！行程最後一天放鬆的完美收尾。', gm:'https://www.google.com/maps/search/해운대+온천+스파', gi:'https://www.google.com/search?q=釜山+海雲台+溫泉+汗蒸幕+旅遊心得&hl=zh-TW' },
   // 史努比
-  { lat:35.1582, lng:129.1618, e:'🐶', cat:'史努比', cc:'#fce4ec', ct:'#b71c1c', mc:'#c62828', t:'Snoopy Place 釜山店', k:'스누피 플레이스 부산', d:'史努比主題咖啡廳共 3 層樓！巨大衝浪 Snoopy 公仔迎接，飲料甜點全超可愛。', gm:'https://www.google.com/maps/search/스누피+플레이스+해운대+부산', gi:'https://www.google.com/search?q=釜山+Snoopy+Place+史努比咖啡廳+旅遊心得&hl=zh-TW' }
+  { lat:35.1582, lng:129.1618, e:'🐶', cat:'史努比', cc:'#fce4ec', ct:'#b71c1c', mc:'#c62828', t:'Snoopy Place 釜山店', k:'스누피 플레이스 부산', d:'史努比主題咖啡廳共 3 層樓！巨大衝浪 Snoopy 公仔迎接，飲料甜點全超可愛。', gm:'https://www.google.com/maps/search/스누피+플레이스+해운대+부산', gi:'https://www.google.com/search?q=釜山+Snoopy+Place+史努比咖啡廳+旅遊心得&hl=zh-TW' },
+  // 購物
+  { lat:35.0987, lng:129.0283, e:'🦺', cat:'購物', cc:'#e0f2f1', ct:'#00695c', mc:'#00897b', t:'國際市場', k:'국제시장', d:'阿珠媽背心最正宗來源！多口袋鮮豔背心 5,000–15,000 ₩，同時也是釜山最大傳統市場，乾貨、雜貨、海苔伴手禮一次逛完。', gm:'https://www.google.com/maps/search/국제시장+부산', gi:'https://www.google.com/search?q=釜山+國際市場+購物+推薦&hl=zh-TW' },
+  { lat:35.0998, lng:129.0302, e:'🛒', cat:'購物', cc:'#e0f2f1', ct:'#00695c', mc:'#00897b', t:'光復路商圈', k:'광복로 쇼핑타운', d:'釜山最熱鬧的購物街，復古小物、手作飾品、流行雜貨密集。與國際市場步行相連，可一起逛。', gm:'https://www.google.com/maps/search/광복로+쇼핑타운+부산', gi:'https://www.google.com/search?q=釜山+光復路+購物+推薦&hl=zh-TW' },
+  { lat:35.1577, lng:129.0594, e:'💄', cat:'購物', cc:'#e0f2f1', ct:'#00695c', mc:'#00897b', t:'西面商圈（Olive Young）', k:'서면 올리브영', d:'Olive Young 密集，美妝掃貨首選！面膜 10 片裝最划算。旁邊西面地下街有平價服飾、飾品、鞋子，年輕人最愛。', gm:'https://www.google.com/maps/search/올리브영+서면+부산', gi:'https://www.google.com/search?q=釜山+Olive+Young+西面+必買&hl=zh-TW' },
+  { lat:35.1693, lng:129.1316, e:'🏬', cat:'購物', cc:'#e0f2f1', ct:'#00695c', mc:'#00897b', t:'新世界百貨 / E-Mart 센텀', k:'신세계백화점 센텀시티', d:'亞洲最大百貨公司！頂樓有 Spaland 汗蒸幕，地下有 E-Mart 超市採購伴手禮（海苔、魚板、零食），一棟搞定購物+泡湯。', gm:'https://www.google.com/maps/search/신세계백화점+센텀시티+부산', gi:'https://www.google.com/search?q=釜山+新世界百貨+센텀시티+購物&hl=zh-TW' }
 ];
 
 function mkPopup(loc) {
